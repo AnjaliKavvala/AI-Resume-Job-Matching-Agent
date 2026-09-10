@@ -1,38 +1,25 @@
 import json
 import os
-
 from dotenv import load_dotenv
 from google import genai
-
-
-# ============================================================
-# LOAD API KEY
-# ============================================================
+import streamlit as st
 
 load_dotenv()
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
+if not GEMINI_API_KEY:
+    try:
+        GEMINI_API_KEY = st.secrets["GEMINI_API_KEY"]
+    except Exception:
+        GEMINI_API_KEY = None
 
 if not GEMINI_API_KEY:
-    raise ValueError(
-        "GEMINI_API_KEY not found. "
-        "Please add it to your .env file."
-    )
+    raise ValueError("GEMINI_API_KEY not found.")
 
-
-# ============================================================
-# GEMINI CLIENT
-# ============================================================
-
-client = genai.Client(
-    api_key=GEMINI_API_KEY
-)
-
+client = genai.Client(api_key=GEMINI_API_KEY)
 
 MODEL_NAME = "gemini-3.6-flash"
-
-
 # ============================================================
 # CALL GEMINI
 # ============================================================
