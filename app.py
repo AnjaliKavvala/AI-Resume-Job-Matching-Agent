@@ -854,7 +854,7 @@ st.markdown(
     """
     <div class="footer">
 
-    🤖 Built with <b>LangGraph + Ollama + Gemma 3 + Streamlit</b>
+    🤖 Built with <b>LangGraph + Gemini + Streamlit</b>
 
     </div>
     """,
